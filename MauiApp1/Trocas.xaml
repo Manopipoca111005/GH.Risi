@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             x:Class="MauiApp1.Trocas"
+             Title="Trocas"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="White">
+    <Shell.TitleView>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Trocas"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
+            <Image Source="adicionartroca.png"
+                   WidthRequest="30"
+                   HeightRequest="30"
+                   Grid.Column="1"
+                   Margin="0,0,10,0"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image Source="pontoslogin.png"
+                   WidthRequest="30"
+                   HeightRequest="30"
+                   Grid.Column="2"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
+        <Style x:Key="BaseButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="BorderWidth" Value="1"/>
+        </Style>
+
+        <Style x:Key="TabButton" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="TextColor" Value="#00AEEF"/>
+            <Setter Property="BorderColor" Value="#00AEEF"/>
+        </Style>
+
+        <Style x:Key="LabelAnoMes" TargetType="Label">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalOptions" Value="End"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
+
+        <Style x:Key="BlueTableHeader" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HeightRequest" Value="40"/>
+        </Style>
+
+        <Style x:Key="TableCell" TargetType="Label">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HeightRequest" Value="30"/>
+        </Style>
+
+        <Style x:Key="GroupHeader" TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="TextColor" Value="#00AEEF"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="0" ColumnDefinitions="*" BackgroundColor="White">
+        <Grid Grid.Row="0" ColumnDefinitions="*,*,*" ColumnSpacing="6" Padding="10,10,10,0">
+            <Button x:Name="EmAbertoText" Text="EM ABERTO" Grid.Column="0" Style="{StaticResource TabButton}" Clicked="EmAberto_Clicked"/>
+            <Button x:Name="AceitesText" Text="ACEITES" Grid.Column="1" Style="{StaticResource TabButton}" Clicked="Aceites_Clicked"/>
+            <Button x:Name="NaoAceitesText" Text="NÃO ACEITES" Grid.Column="2" Style="{StaticResource TabButton}" Clicked="NaoAceites_Clicked"/>
+        </Grid>
+
+        <Grid Grid.Row="1" ColumnDefinitions="Auto, 1.5*, Auto, 1.5*, Auto" ColumnSpacing="5" Padding="10,5">
+            <Label Text="Ano:" Style="{StaticResource LabelAnoMes}" Grid.Column="0"/>
+            <editors:SfComboBox x:Name="AnoPicker"
+                                Placeholder="Selecione o Ano"
+                                DisplayMemberPath="."
+                                Grid.Column="1"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
+                                IsClearButtonVisible="False"  />
+            <Label Text="Mês:" Style="{StaticResource LabelAnoMes}" Grid.Column="2"/>
+            <editors:SfComboBox x:Name="MesPicker"
+                                Placeholder="Selecione o Mês"
+                                DisplayMemberPath="Nome"
+                                Grid.Column="3"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
+                                IsClearButtonVisible="False" />
+            <Image Source="icon_search.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" Grid.Column="4">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="SearchIcon_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+
+        <ScrollView Grid.Row="2" BackgroundColor="White" Padding="0">
+            <VerticalStackLayout x:Name="StackTrocas" Spacing="0" Padding="0">
+                <Label Text="Não tem nenhum Registo"
+                       x:Name="lblRegistoText"
+                       IsVisible="False"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Padding="20"
+                       FontSize="16"
+                       FontAttributes="Bold"
+                       TextColor="DarkGray"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

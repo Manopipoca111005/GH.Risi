@@ -1,0 +1,123 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MauiApp1"
+             xmlns:localConverters="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.AssiduidadePage"
+             Title="Assiduidade"
+             BackgroundColor="#F0F0F0"
+             Shell.NavBarIsVisible="True">
+
+    <Shell.TitleView>
+        <Grid Padding="10" BackgroundColor="DeepSkyBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Assiduidade" FontSize="18" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Image Source="pontoslogin.png" WidthRequest="30" HeightRequest="30" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid>
+        <ScrollView IsVisible="{Binding IsNotBusy}">
+            <VerticalStackLayout Padding="0" Spacing="5">
+                <Frame CornerRadius="10" Padding="10" BackgroundColor="White" HasShadow="True">
+                    <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                        <Label Text="De:" VerticalOptions="Center"/>
+                        <DatePicker x:Name="DateDePicker" WidthRequest="125" Format="dd/MM/yyyy" />
+                        <Label Text="Até:" VerticalOptions="Center"/>
+                        <DatePicker x:Name="DateAtePicker" WidthRequest="125" Format="dd/MM/yyyy"/>
+                        <Image Source="icon_search.png" HeightRequest="28" WidthRequest="28" VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSearchTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </HorizontalStackLayout>
+                </Frame>
+                <ScrollView Orientation="Vertical" MaximumHeightRequest="2000">
+                    <VerticalStackLayout>
+                        <Grid ColumnDefinitions="*,*"
+                              RowDefinitions="Auto"
+                              ColumnSpacing="-410"
+                              BackgroundColor="#3cbbe8"
+                              RowSpacing="0">
+                            <Label Text="E1" FontSize="17" HorizontalOptions="Start"  Margin="20,5,0,5" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="S1" FontSize="17" HorizontalOptions="Start" Margin="70,5,5,5" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="E2" FontSize="17" HorizontalOptions="Start" Margin="120,5,5,5" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="S2" FontSize="17" HorizontalOptions="Start" Margin="170,5,5,5" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="E3" FontSize="17" HorizontalOptions="Start" Margin="220,5,5,5" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="S3" FontSize="17" HorizontalOptions="Start" Margin="270,5,5,5" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="E4" FontSize="17" HorizontalOptions="Start" Margin="320,5,5,5" TextColor="White" FontAttributes="Bold" />
+                            <Label Text="S4" FontSize="17" HorizontalOptions="Start" Margin="370,5,5,5" TextColor="White" FontAttributes="Bold" />
+                        </Grid>
+
+                        <ScrollView Orientation="Horizontal" MaximumWidthRequest="1000">
+                            <CollectionView x:Name="ListaRegistos"
+                                            ItemsSource="{Binding ListaAssiduidade}"
+                                            SelectionMode="Single"
+                                            SelectionChanged="CollectionView_SelectionChanged">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid RowDefinitions="Auto,*" ColumnSpacing="0" BackgroundColor="White" Padding="0">
+                                            <Grid Grid.Row="0"
+                                                  ColumnDefinitions="90,30,30,36,30,30,30,30,30,*,Auto"
+                                                  Padding="5,17">
+                                                <Label  Text="{Binding Data}"
+                                                        Grid.Column="0"
+                                                       TextColor="#0972C2" FontAttributes="Bold" FontSize="13"
+                                                       VerticalTextAlignment="Start" HorizontalTextAlignment="Start" Margin="0,-15,0,0" />
+                                                <BoxView Grid.Column="1" BackgroundColor="LightBlue" WidthRequest="1" Margin="0,5,10,-15"/>
+                                                <Label Grid.Column="0" LineBreakMode="NoWrap" Text="{Binding E1}" HorizontalTextAlignment="Start" FontSize="12"  />
+                                                <Label Grid.Column="0" LineBreakMode="NoWrap" Text="{Binding S1}" HorizontalTextAlignment="Center" FontSize="12" Margin="45,0,0,0"/>
+                                                <BoxView Grid.Column="5"  BackgroundColor="LightBlue" WidthRequest="1" Margin="0,5,30,-15" />
+                                                <Label Grid.Column="2" LineBreakMode="NoWrap" Text="{Binding E2}" HorizontalTextAlignment="Start" FontSize="12" Margin="-15,0,0,0" />
+                                                <Label Grid.Column="3" LineBreakMode="NoWrap" Text="{Binding S2}" HorizontalTextAlignment="End" FontSize="12" />
+                                                <BoxView Grid.Column="9" BackgroundColor="LightBlue" WidthRequest="1" Margin="-35,5,0,-15"/>
+                                                <Label Grid.Column="5" LineBreakMode="CharacterWrap" Text="{Binding E3}" HorizontalTextAlignment="Center" FontSize="12" Margin="-10,0,-20,0"/>
+                                                <Label Grid.Column="6" LineBreakMode="CharacterWrap" Text="{Binding S3}" HorizontalTextAlignment="Center" FontSize="12" Margin="-10,0,-60,0"/>
+                                                <Label Grid.Column="7" LineBreakMode="CharacterWrap" Text="{Binding E4}" HorizontalTextAlignment="Center" FontSize="12" Margin="-10,0,-100,0"/>
+                                                <Label Grid.Column="8" LineBreakMode="CharacterWrap" Text="{Binding S4}" HorizontalTextAlignment="Center" FontSize="12" Margin="-10,0,-140,0"/>
+                                                <StackLayout Grid.Column="17"
+                                                             Orientation="Horizontal"
+                                                             HorizontalOptions="End"
+                                                             VerticalOptions="Start"
+                                                             Spacing="10"
+                                                             Margin="-6,-15,0,0">
+                                                    <Image WidthRequest="18" HeightRequest="18">
+                                                        <Image.Style>
+                                                            <Style TargetType="Image">
+                                                                <Setter Property="Source" Value="balao_azul.png" />
+                                                                <Style.Triggers>
+                                                                    <DataTrigger TargetType="Image" Binding="{Binding TemOcorrencia}" Value="True">
+                                                                        <Setter Property="Source" Value="balao_amarelo.png" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </Image.Style>
+                                                    </Image>
+                                                    <Image Source="balao_azul.png" WidthRequest="18" HeightRequest="18" />
+                                                    <Image Source="balao_azul.png" WidthRequest="18" HeightRequest="18" />
+                                                </StackLayout>
+                                            </Grid>
+                                            <BoxView Grid.Row="1" Grid.ColumnSpan="18" HeightRequest="1" BackgroundColor="LightBlue" Margin="0,0,0,0" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Color="DeepSkyBlue" />
+    </Grid>
+</ContentPage>

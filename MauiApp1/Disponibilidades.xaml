@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.Disponibilidades"
+             Title="Disponibilidades"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#2196F3</Color>
+            <Color x:Key="SecondaryColor">#64B5F6</Color>
+            <Color x:Key="AccentColor">#FFC107</Color>
+            <Color x:Key="TextColorDark">Black</Color>
+            <Color x:Key="TextColorLight">White</Color>
+            <Color x:Key="HeaderBackgroundColor">#00AEEF</Color>
+            <Color x:Key="GrayTextColor">Gray</Color>
+            <Color x:Key="BarraLateralColor">#ADD8E6</Color>
+            <Color x:Key="SeparatorLineColor">#E0E0E0</Color>
+            <Style x:Key="TabButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource TextColorLight}" />
+                <Setter Property="CornerRadius" Value="0" />
+            </Style>
+
+            <Style x:Key="ServiceInfoLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="#00AEEF" />
+            </Style>
+
+            <Style x:Key="IncrementoLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0,5,0,10" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#00AEEF" />
+            </Style>
+
+            <Style x:Key="TableHeaderLabelStyle" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <Grid Padding="10" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Disponibilidades"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource TextColorLight}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Grid.Column="0"
+                   Margin="60,0,0,0"/>
+
+            <Image Source="gravar.png"
+                   WidthRequest="30"
+                   HeightRequest="30"
+                   Grid.Column="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                </Image.GestureRecognizers>
+            </Image>
+
+            <Image Source="pontoslogin.png"
+                   WidthRequest="30"
+                   HeightRequest="30"
+                   Grid.Column="2"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, *" RowSpacing="0">
+        <Grid Grid.Row="0" ColumnDefinitions="*,*" HeightRequest="50">
+            <Button x:Name="btnEmAberto"
+                    Text="EM ABERTO"
+                    Grid.Column="0"
+                    BackgroundColor="{StaticResource PrimaryColor}"
+                    Style="{StaticResource TabButtonStyle}"
+                    Clicked="OnTabButtonClicked" />
+            <Button x:Name="btnFechadas"
+                    Text="FECHADAS"
+                    Grid.Column="1"
+                    BackgroundColor="{StaticResource SecondaryColor}"
+                    Style="{StaticResource TabButtonStyle}"
+                    Clicked="OnTabButtonClicked" />
+        </Grid>
+
+        <Label Grid.Row="1" Text="{Binding ServicoMesAnoLabelText}"
+               Style="{StaticResource ServiceInfoLabelStyle}"
+               FontAttributes="Bold"/>
+
+        <Label Grid.Row="2" Text="{Binding IncrementoLabelText}"
+               Style="{StaticResource IncrementoLabelStyle}"
+               FontAttributes="Bold"/>
+
+        <CollectionView x:Name="disponibilidadesCollectionView"
+                        Grid.Row="3"
+                        SelectionMode="None">
+            <CollectionView.Header>
+                <Grid ColumnDefinitions="10, 0.10*, 0.35*, 0.35*, 0.20*"
+                      BackgroundColor="{StaticResource HeaderBackgroundColor}"
+                      Padding="10,5">
+                    <Label Text="DIA" Style="{StaticResource TableHeaderLabelStyle}" Grid.Column="1" />
+                    <Label Text="PREVISTO" Style="{StaticResource TableHeaderLabelStyle}" Grid.Column="2" />
+                    <Label Text="DISPONIBILIDADE" Style="{StaticResource TableHeaderLabelStyle}" Grid.Column="3" />
+                    <Label Text="ESTADO" Style="{StaticResource TableHeaderLabelStyle}" Grid.Column="4" HorizontalTextAlignment="Center" />
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="*, Auto"
+                          ColumnDefinitions="10, 0.10*, 0.35*, 0.35*, 0.20*"
+                          Padding="0"
+                          RowSpacing="0"
+                          ColumnSpacing="5"
+                          BackgroundColor="White"
+                          >
+
+                        <BoxView Grid.Column="0"
+                                 Grid.Row="0"
+                                 Grid.RowSpan="2" BackgroundColor="{StaticResource BarraLateralColor}"
+                                 WidthRequest="13"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="FillAndExpand"
+                                 Margin="0" />
+                        <Label Text="{Binding Dia}" Grid.Column="1" VerticalOptions="Center" Padding="5,8,0,8"/>
+                        <StackLayout Grid.Column="2" VerticalOptions="Center" Padding="0,8,0,8">
+                            <Label Text="{Binding Prev}" LineBreakMode="NoWrap" />
+                        </StackLayout>
+                        <Label Text="{Binding ItemDisponibilidade}" Grid.Column="3" VerticalOptions="Center" Padding="0,8,0,8"/>
+                        <Image Grid.Column="4"
+                               Source="{Binding EstadoImagem}"
+                               WidthRequest="30" HeightRequest="20" HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Margin="0,8,0,8">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <BoxView Grid.Row="1"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="5"
+                                 HeightRequest="1"
+                                 BackgroundColor="{StaticResource SeparatorLineColor}"
+                                 Margin="0,0,0,0" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

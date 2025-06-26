@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.RegistoFaltas"
+             Title="RegistoFaltas" Shell.NavBarIsVisible="True"
+             BackgroundColor="White">
+
+    <Shell.TitleView>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Lista de Faltas"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
+            <Image Source="pontoslogin.png" WidthRequest="30"
+                   HeightRequest="30"
+                   Grid.Column="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
+        <Style x:Key="SelectedTabButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#00AEEF"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderWidth" Value="0"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="Padding" Value="10,0"/>
+        </Style>
+
+        <Style x:Key="UnselectedTabButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Blue"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="BorderWidth" Value="0"/>
+            <Setter Property="BorderColor" Value="Transparent"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="Padding" Value="10,0"/>
+        </Style>
+
+        <Style x:Key="PrimaryActionButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#00AEEF"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto" RowSpacing="0" ColumnDefinitions="*" BackgroundColor="White">
+
+        <Grid Grid.Row="0" ColumnDefinitions="*,*" ColumnSpacing="6">
+            <Button x:Name="PendentesButton"
+                    Text="PENDENTES"
+                    Style="{StaticResource UnselectedTabButton}"
+                    Clicked="PendentesButton_Clicked"
+                    />
+            <Button x:Name="HistoricoButton"
+                    Text="HISTÓRICO"
+                    Grid.Column="1"
+                    Style="{StaticResource SelectedTabButton}"
+                    Clicked="HistoricoButton_Clicked"
+                    />
+        </Grid>
+
+        <Grid Grid.Row="1" x:Name="FilterSection" BackgroundColor="White" Padding="0,8,12,8" IsVisible="True">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Início/Fim" TextColor="White" HorizontalOptions="End" FontSize="14" BackgroundColor="DeepSkyBlue" WidthRequest="95" HorizontalTextAlignment="Center" Margin="0,0,0,-4"/>
+                <BoxView HeightRequest="1" BackgroundColor="#B0E0E6" HorizontalOptions="Fill"/>
+            </VerticalStackLayout>
+        </Grid>
+
+
+        <ScrollView Grid.Row="2" BackgroundColor="White">
+            <VerticalStackLayout x:Name="StackFaltas">
+                <StackLayout x:Name="PendentesContent" IsVisible="False" Padding="10">
+                </StackLayout>
+
+                <StackLayout x:Name="HistoricoContent" IsVisible="True" Padding="10">
+                </StackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Button Grid.Row="3"
+                Text="NOVO PEDIDO"
+                Style="{StaticResource PrimaryActionButton}"
+                Margin="16,12"
+                x:Name="NovoPedidoButton"
+                Clicked="NovoPedidoButton_Clicked"/>
+    </Grid>
+</ContentPage>

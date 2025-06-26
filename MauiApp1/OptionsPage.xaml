@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.OptionsPage">
+    <Grid>
+        <VerticalStackLayout>
+            <Grid HeightRequest="50" WidthRequest="412" BackgroundColor="DeepSkyBlue">
+                <Label Text="Bem-vindo" 
+                       FontSize="16" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" 
+                       HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center"
+                       BackgroundColor="Transparent"
+                       Margin="0,0,0,0"/>
+
+                <Image Source="pontoslogin.png" 
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       HeightRequest="30"
+                       WidthRequest="40" Margin="0,0,0,0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+
+            <Image Source="user_optionspage.png" Margin="0,10,0,0"/>
+            <Label x:Name="NomeLabel" HorizontalTextAlignment="Center"/>
+            <Label x:Name="IdLabel" HorizontalTextAlignment="Center"/>
+            <BoxView
+                HeightRequest="1"
+                WidthRequest="320"/>
+
+            <Grid RowSpacing="0" ColumnSpacing="20" Padding="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                    <Button Clicked="Button_Clicked" ImageSource="dadospessoais.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                    <Label Text="Dados&#x0a;Pessoais" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+                    <Grid>
+                        <Button Clicked="Button_Clicked_1" ImageSource="notificacoes.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                        <Border 
+                            x:Name="NotificationBadgeBorder"
+                            BackgroundColor="Red"
+                            StrokeShape="RoundRectangle 20" 
+                            WidthRequest="25" 
+                            HeightRequest="25"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start"
+                            Margin="0,0,20,0"
+                            IsVisible="False">
+                            <Label 
+                                x:Name="NotificationCountLabel" 
+                                Text="0" 
+                                TextColor="White" 
+                                FontSize="12" 
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+                        </Border>
+                    </Grid>
+                    <Label Text="Notificações" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="0" Grid.Column="2">
+                    <Button Clicked="Button_Clicked_10" ImageSource="tarefas_pendentes.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                    <Label Text="Tarefas&#x0a;Pendentes" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                    <Button Clicked="Button_Clicked_2" ImageSource="ocorrencias.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                    <Label Text="Assiduidade" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+                    <Button Clicked="Button_Clicked_4" ImageSource="registo_faltas.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                    <Label Text="Registo&#x0a;de Faltas" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="1" Grid.Column="2">
+                    <Button Clicked="Button_Clicked_3" ImageSource="pmts.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                    <Label Text="P.M.T.s&#x0a;Realização" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="2" Grid.Column="0">
+                    <Button Clicked="Button_Clicked_9" ImageSource="sincronizar.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                    <Label Text="Sincronizar&#x0a;Calendário" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="2" Grid.Column="1">
+                    <Button Clicked="Button_Clicked_5" ImageSource="ferias.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                    <Label Text="Férias" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="2" Grid.Column="2">
+                    <Grid>
+                        <Button Clicked="Button_Clicked_6" ImageSource="trocas.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                        <Border 
+                             x:Name="TrocasBadgeBorder"
+                             BackgroundColor="Red"
+                             StrokeShape="RoundRectangle 20" 
+                             WidthRequest="25" 
+                             HeightRequest="25"
+                             HorizontalOptions="End"
+                             VerticalOptions="Start"
+                             Margin="0,0,20,0"
+                             IsVisible="False">
+                            <Label 
+                             x:Name="TrocasCountLabel" 
+                             Text="0" 
+                             TextColor="White" 
+                             FontSize="12" 
+                             FontAttributes="Bold"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"/>
+                        </Border>
+                    </Grid>
+                    <Label Text="Trocas" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="3" Grid.Column="0">
+                    <Grid>
+                        <Button Clicked="Button_Clicked_7" ImageSource="disponibilidades.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                        <Border 
+                             x:Name="DisponibilidadeBadgeBorder"
+                             BackgroundColor="Red"
+                             StrokeShape="RoundRectangle 20" 
+                             WidthRequest="25" 
+                             HeightRequest="25"
+                             HorizontalOptions="End"
+                             VerticalOptions="Start"
+                             Margin="0,0,20,0"
+                             IsVisible="False">
+                            <Label 
+                             x:Name="DisponibilidadeCountLabel" 
+                             Text="0" 
+                             TextColor="White" 
+                             FontSize="12" 
+                             FontAttributes="Bold"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"/>
+                        </Border>
+                    </Grid>
+                    <Label Text="Disponibilidades" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Row="3" Grid.Column="1">
+                    <Button Clicked="Button_Clicked_8" ImageSource="registoponto.png" BackgroundColor="Transparent" HorizontalOptions="Center" HeightRequest="70" WidthRequest="117.33"/>
+                    <Label Text="Registo&#x0a;Ponto" HorizontalOptions="Center" HorizontalTextAlignment="Center" WidthRequest="117.33"/>
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ComandoItem1}" />
+                    </VerticalStackLayout.GestureRecognizers>
+                </VerticalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+
+        <Grid x:Name="PopupOverlay" 
+              BackgroundColor="#80000000" 
+              IsVisible="False"
+              HorizontalOptions="Fill" 
+              VerticalOptions="Fill">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="PopupOverlay_Tapped" />
+            </Grid.GestureRecognizers>
+
+            <Frame x:Name="PopupFrame"
+       BackgroundColor="White"
+       HasShadow="True"
+       CornerRadius="15"
+       Padding="20"
+       HorizontalOptions="Center"
+       VerticalOptions="Center"
+       WidthRequest="320"
+       HeightRequest="390">
+                <StackLayout>
+                    <Grid Margin="0,0,0,15">
+                        <Label Text="Opções de Sincronização do Calendário" 
+                   FontSize="16" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"/>
+
+                        <Button x:Name="CloseButton"
+                    Text="✕"
+                    FontSize="18"
+                    TextColor="Gray"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    Clicked="ClosePopup_Clicked"/>
+                    </Grid>
+
+                    <StackLayout Orientation="Vertical" Spacing="15">
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox x:Name="FeriasCheckBox" IsChecked="True" Color="DeepSkyBlue"/>
+                            <Label Text="Férias" VerticalOptions="Center" FontSize="16"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox x:Name="AbstinenciasCheckBox" IsChecked="True" Color="DeepSkyBlue"/>
+                            <Label Text="Absentismo" VerticalOptions="Center" FontSize="16"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox x:Name="TurnosCheckBox" IsChecked="True" Color="DeepSkyBlue"/>
+                            <Label Text="Turnos" VerticalOptions="Center" FontSize="16"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <Button x:Name="OkConfirmSyncButton" 
+                Text="OK" 
+                BackgroundColor="DeepSkyBlue" 
+                TextColor="White" 
+                CornerRadius="8"
+                Clicked="SincronizarButton_Clicked" 
+                HorizontalOptions="FillAndExpand" 
+                Margin="0,20,0,0"/>
+
+                    <Button x:Name="CancelSyncButton"
+                Text="Cancelar"
+                BackgroundColor="DeepSkyBlue"
+                TextColor="White"
+                CornerRadius="8"
+                Clicked="ClosePopup_Clicked"
+                HorizontalOptions="FillAndExpand"
+                Margin="0,10,0,0"/>
+
+                    <Label x:Name="StatusSincronizacaoLabel" 
+               Text="" 
+               HorizontalTextAlignment="Center" 
+               TextColor="Green" 
+               FontSize="12" 
+               IsVisible="False" 
+               Margin="0,10,0,0"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

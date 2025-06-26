@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             x:Class="MauiApp1.AlterarFerias"
+             xmlns:local="clr-namespace:MauiApp1"
+             Title="Alterar Férias"
+             Shell.NavBarIsVisible="True">
+
+    <Shell.TitleView>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Alterar Férias"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+            <Image Source="gravar.png"
+                   WidthRequest="30"
+                   HeightRequest="30"
+                   Grid.Column="0"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                </Image.GestureRecognizers>
+            </Image>
+            <Image Source="pontoslogin.png"
+                   WidthRequest="30"
+                   HeightRequest="30"
+                   Grid.Column="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <Frame Padding="0" Margin="10" CornerRadius="5" BorderColor="#34a9d7" HasShadow="False">
+                <editors:SfComboBox x:Name="YearComboBox"
+                                    ItemsSource="{Binding Years}"
+                                    SelectedItem="{Binding SelectedYear}"
+                                    Placeholder="Selecione o Ano"
+                                    HorizontalTextAlignment="Center"
+                                    SelectionChanged="YearComboBox_SelectionChanged"
+                                    />
+            </Frame>
+
+            <VerticalStackLayout x:Name="CalendarContainer">
+
+                <CollectionView ItemsSource="{Binding VacationMonths}"
+                                HeightRequest="80"
+                                ItemsLayout="HorizontalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="local:VacationMonth">
+                            <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="MonthIcon_Tapped" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="{Binding Icon}" WidthRequest="30" HeightRequest="30"/>
+                                <Label Text="{Binding MonthName}" HorizontalTextAlignment="Center" FontSize="12"/>
+                                <Label Text="{Binding Days, StringFormat='({0} dias)'}" HorizontalTextAlignment="Center" FontSize="10"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{Binding CalendarTitle}"
+                           FontSize="16"
+                           WidthRequest="412"
+                           HeightRequest="30"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="White"
+                           BackgroundColor="#34a9d7"
+                           Grid.Row="0"/>
+
+                    <Grid Grid.Row="1" BackgroundColor="DeepSkyBlue">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="S" Grid.Column="0" HorizontalOptions="Center"/>
+                        <Label Text="T" Grid.Column="1" HorizontalOptions="Center"/>
+                        <Label Text="Q" Grid.Column="2" HorizontalOptions="Center"/>
+                        <Label Text="Q" Grid.Column="3" HorizontalOptions="Center"/>
+                        <Label Text="S" Grid.Column="4" HorizontalOptions="Center"/>
+                        <Label Text="S" Grid.Column="5" HorizontalOptions="Center"/>
+                        <Label Text="D" Grid.Column="6" HorizontalOptions="Center"/>
+                    </Grid>
+
+                    <CollectionView ItemsSource="{Binding CalendarDays}"
+                                    Grid.Row="2"
+                                    x:Name="CalendarView">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="7"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="local:CalendarDay">
+                                <Frame CornerRadius="20"
+                                       HeightRequest="40"
+                                       WidthRequest="40"
+                                       Padding="0"
+                                       Margin="2"
+                                       BackgroundColor="{Binding BackgroundColor}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="CalendarDay_Tapped" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Label Text="{Binding Day}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           TextColor="{Binding TextColor}"/>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </VerticalStackLayout>
+
+            <Label x:Name="NoVacationMessageLabel"
+                   Text="Não existem férias marcadas para o ano selecionado."
+                   IsVisible="False"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+            <Grid RowDefinitions="Auto, *" Padding="6" Margin="0,5,0,0">
+                <Grid Grid.Row="0" BackgroundColor="#34a9d7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Descrição" Grid.Column="0" TextColor="White" FontAttributes="Bold"/>
+                    <Label Text="Dias" Grid.Column="1" TextColor="White" FontAttributes="Bold"/>
+                </Grid>
+
+                <VerticalStackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding SummaryItems}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="local:SummaryItem">
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Description}" Grid.Column="0" VerticalOptions="Center" TextColor="#34a9d7"/>
+                                    <Label Text="{Binding Value}" Grid.Column="1" VerticalOptions="Center" TextColor="#34a9d7"/>
+                                </Grid>
+                                <BoxView HeightRequest="1" Color="#34a9d7"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

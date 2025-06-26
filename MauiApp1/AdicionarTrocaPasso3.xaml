@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.AdicionarTrocaPasso3"
+             Title="AdicionarTrocaPasso3"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="White">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#2196F3</Color>
+            <Color x:Key="SecondaryColor">#64B5F6</Color>
+            <Color x:Key="AccentColor">#FFC107</Color>
+            <Color x:Key="TextColorDark">Black</Color>
+            <Color x:Key="TextColorLight">White</Color>
+            <Color x:Key="HeaderBackgroundColor">#007BA7</Color>
+            <Color x:Key="Colab277HeaderColor">#1399C0</Color>
+            <Color x:Key="Colab46HeaderColor">#ED1C24</Color>
+            <Color x:Key="DayColumnBackgroundColor">#F0F0F0</Color>
+            <Color x:Key="SeparatorLineColor">#E0E0E0</Color>
+            <Color x:Key="BarraLateralColab277Color">#1399C0</Color>
+            <Color x:Key="BarraLateralColab46Color">#ED1C24</Color>
+            <Style x:Key="TableHeaderLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
+
+            <Style x:Key="DayNumberLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="DayOfWeekLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <Style x:Key="ColabDataLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Nova troca"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Grid.Column="1" />
+
+            <Image Source="pontoslogin.png"
+                   WidthRequest="30"
+                   HeightRequest="30"
+                   Grid.Column="2"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="Auto, Auto, Auto, *, Auto"
+          RowSpacing="0">
+
+        <HorizontalStackLayout Grid.Row="0"
+                               BackgroundColor="White"
+                               Padding="20,20,20,10"
+                               HorizontalOptions="FillAndExpand"
+                               Spacing="10">
+            <StackLayout HorizontalOptions="FillAndExpand" >
+                <Image Source="passo3.png"
+                       WidthRequest="411"
+                       Margin="-15,0,0,0"
+                       />
+            </StackLayout>
+        </HorizontalStackLayout>
+
+        <Label Grid.Row="1"
+               Text="SELECIONE O(S) DIA(S)"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Margin="0,20,0,10"
+               FontSize="18"
+               FontAttributes="Bold"
+               TextColor="#007BA7"/>
+
+        <Grid Grid.Row="2" ColumnSpacing="1" RowSpacing="1" Padding="20,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="0.25*" />
+                <ColumnDefinition Width="0.25*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="DIA" Grid.Column="0" BackgroundColor="{StaticResource Colab277HeaderColor}" Style="{StaticResource TableHeaderLabelStyle}"/>
+            <Label x:Name="lblColab" Grid.Column="1" BackgroundColor="{StaticResource Colab277HeaderColor}" Style="{StaticResource TableHeaderLabelStyle}"/>
+            <Label Text="DIA" Grid.Column="2" BackgroundColor="{StaticResource Colab277HeaderColor}" Style="{StaticResource TableHeaderLabelStyle}"/>
+            <Label x:Name="lblcolab2" Text="COLAB. 46" Grid.Column="3" BackgroundColor="{StaticResource Colab46HeaderColor}" Style="{StaticResource TableHeaderLabelStyle}"/>
+        </Grid>
+
+        <ScrollView Grid.Row="3" Padding="20,0">
+            <CollectionView x:Name="trocaDiasCollectionView" SelectionMode="None"
+                            ItemsSource="{Binding TrocaDias}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnSpacing="0" RowSpacing="0" BackgroundColor="{StaticResource SeparatorLineColor}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.25*" />
+                                <ColumnDefinition Width="0.25*" />
+                                <ColumnDefinition Width="0.25*" />
+                                <ColumnDefinition Width="0.25*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Column="0" BackgroundColor="{StaticResource DayColumnBackgroundColor}" Padding="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="35"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="{Binding DayOfWeekString}" Style="{StaticResource DayOfWeekLabelStyle}" 
+                                       BackgroundColor="{StaticResource BarraLateralColab277Color}" 
+                                       Padding="5,10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+
+                                <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Spacing="5" Padding="2,0" BackgroundColor = "{Binding colab1background}">
+                                    <Label Text="{Binding DiaTexto}" Style="{StaticResource DayNumberLabelStyle}" 
+                                           VerticalOptions="Center" />
+
+                                    <Image Source="{Binding ColabAtualImageSource}"
+                                           WidthRequest="22" HeightRequest="22">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnColabAtualImageTapped" CommandParameter="{Binding .}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </HorizontalStackLayout>
+                            </Grid>
+
+                            <Grid Grid.Column="1" BackgroundColor="White">
+                                <Label Text="{Binding colabatualsigla}" Style="{StaticResource ColabDataLabelStyle}" Padding="5,10"/>
+                            </Grid>
+
+                            <Grid Grid.Column="2" BackgroundColor="{StaticResource DayColumnBackgroundColor}" Padding="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="35"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="{Binding DayOfWeekString}" Style="{StaticResource DayOfWeekLabelStyle}" 
+                                       BackgroundColor="{StaticResource BarraLateralColab277Color}" 
+                                       Padding="5,10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+
+                                <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" Spacing="5" Padding="2,0" BackgroundColor = "{Binding colab2background}">
+                                    <Label Text="{Binding DiaTexto}" Style="{StaticResource DayNumberLabelStyle}" 
+                                           VerticalOptions="Center" />
+
+                                    <Image Source="{Binding Colab2ImageSource}"
+                                           WidthRequest="22" HeightRequest="22">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnColab2ImageTapped" CommandParameter="{Binding .}" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </HorizontalStackLayout>
+                            </Grid>
+
+                            <Grid Grid.Column="3" BackgroundColor="White">
+                                <Label Text="{Binding ColabselecionadoSigla}" Style="{StaticResource ColabDataLabelStyle}" Padding="5,10"/>
+                            </Grid>
+
+                            <BoxView Grid.Column="1" Grid.ColumnSpan="1" VerticalOptions="FillAndExpand" WidthRequest="1" Color="{StaticResource SeparatorLineColor}" HorizontalOptions="End" />
+
+                            <BoxView Grid.Column="2" Grid.ColumnSpan="1" VerticalOptions="FillAndExpand" WidthRequest="1" Color="{StaticResource SeparatorLineColor}" HorizontalOptions="End" />
+
+                            <BoxView Grid.ColumnSpan="4" Grid.Row="0" VerticalOptions="End" HeightRequest="1" Color="{StaticResource SeparatorLineColor}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+        <Grid Grid.Row="4"
+              ColumnDefinitions="0.15*, 0.35*, 0.15*, 0.35*"
+              ColumnSpacing="1"
+              Padding="20,10,20,20"
+              BackgroundColor="White">
+
+            <Button Grid.Column="1"
+                    Text="ANTERIOR"
+                    BackgroundColor="#00BCD4"
+                    TextColor="White"
+                    FontSize="16"
+                    CornerRadius="5"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    Margin="-55,0,0,0"
+                    Clicked="OnAnteriorClicked"/>
+
+            <Button Grid.Column="3"
+                    Text="SEGUINTE"
+                    BackgroundColor="#00BCD4"
+                    TextColor="White"
+                    FontSize="16"
+                    CornerRadius="5"
+                    HeightRequest="40"
+                    HorizontalOptions="Fill"
+                    Margin="-55,0,0,0"
+                    Clicked="OnSeguinteClicked"
+                    />
+        </Grid>
+    </Grid>
+</ContentPage>

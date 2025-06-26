@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.ArquivarNotificacoes"
+             Title="ArquivarNotificacoes"
+             Shell.NavBarIsVisible="True">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Arquivar"
+                   Grid.Column="0" FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   BackgroundColor="Transparent"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
+            <Image Grid.Column="1"
+                   Source="archive.svg"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"
+                   HeightRequest="30"
+                   WidthRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+    <ScrollView>
+    <StackLayout>
+        <StackLayout x:Name="StackNotificacoes" />
+    </StackLayout>
+    </ScrollView>
+</ContentPage>

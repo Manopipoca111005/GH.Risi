@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.DadosPessoais"
+             Shell.NavBarIsVisible="True">
+
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0"
+                   Text="Dados Pessoais" 
+                   FontSize="16" 
+                   FontAttributes="Bold" 
+                   TextColor="White" 
+                   HorizontalTextAlignment="Center" 
+                   VerticalTextAlignment="Center"
+                   BackgroundColor="Transparent"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
+            <Image Grid.Column="1"
+                   Source="pontoslogin.png" 
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"
+                   HeightRequest="30"
+                   WidthRequest="40">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+    <ScrollView>
+    <VerticalStackLayout>
+
+            <HorizontalStackLayout Spacing="308" BackgroundColor="#00deff" Padding="10" Margin="0,0,0,0">
+            <Label x:Name="User" FontAttributes="Bold" VerticalOptions="Start"/>
+            <Label x:Name="Id" VerticalOptions="Start"/>
+        </HorizontalStackLayout>
+
+        <VerticalStackLayout Padding="0" Spacing="0">
+
+            <Label Text="Email Alternativo:" TextColor="SkyBlue"/>
+            <Entry x:Name="EmailAlternativoEntry" />
+
+            <Label Text="Telefone Fixo:" TextColor="SkyBlue"/>
+            <Entry x:Name="TelefoneFixoEntry" />
+
+            <Label Text="Telemóvel 1:" TextColor="SkyBlue"/>
+            <Entry x:Name="Telemovel1Entry" />
+
+            <Label Text="Telemóvel 2:" TextColor="SkyBlue"/>
+            <Entry x:Name="Telemovel2Entry" />
+
+            <Label Text="Extensão:" TextColor="SkyBlue"/>
+            <Entry x:Name="ExtensaoEntry" />
+
+            <Label Text="Telemóvel Profissional:" TextColor="SkyBlue"/>
+            <Entry x:Name="TelemovelProfissionalEntry" />
+
+            <Button
+                    Text="Gravar"
+                    Command="{Binding SaveCommand}"
+                    BackgroundColor="SkyBlue"
+                    HorizontalOptions="Fill"
+                    Clicked="OnGravarClicked"/>
+
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

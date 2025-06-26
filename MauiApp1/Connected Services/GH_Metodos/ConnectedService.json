@@ -1,0 +1,51 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://sites.risi.pt/wsGHMobile4Testes/service6.asmx"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, GH_Metodos"
+    ],
+    "references": [
+      "Microsoft.Extensions.Configuration, {Microsoft.Extensions.Configuration, 9.0.0}",
+      "Microsoft.Extensions.Configuration.Abstractions, {Microsoft.Extensions.Configuration.Abstractions, 9.0.0}",
+      "Microsoft.Extensions.DependencyInjection, {Microsoft.Extensions.DependencyInjection, 9.0.0}",
+      "Microsoft.Extensions.DependencyInjection.Abstractions, {Microsoft.Extensions.DependencyInjection.Abstractions, 9.0.0}",
+      "Microsoft.Extensions.Logging, {Microsoft.Extensions.Logging, 9.0.0}",
+      "Microsoft.Extensions.Logging.Abstractions, {Microsoft.Extensions.Logging.Abstractions, 9.0.0}",
+      "Microsoft.Extensions.Logging.Debug, {Microsoft.Extensions.Logging.Debug, 9.0.0}",
+      "Microsoft.Extensions.Options, {Microsoft.Extensions.Options, 9.0.0}",
+      "Microsoft.Extensions.Primitives, {Microsoft.Extensions.Primitives, 9.0.0}",
+      "Microsoft.Graphics.Canvas.Interop, {Microsoft.Graphics.Win2D, 1.2.0}",
+      "Microsoft.InteractiveExperiences.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.IO.RecyclableMemoryStream, {Microsoft.IO.RecyclableMemoryStream, 3.0.1}",
+      "Microsoft.Maui, {Microsoft.Maui.Core, 9.0.51}",
+      "Microsoft.Maui.Controls, {Microsoft.Maui.Controls.Core, 9.0.51}",
+      "Microsoft.Maui.Controls.Xaml, {Microsoft.Maui.Controls.Xaml, 9.0.51}",
+      "Microsoft.Maui.Essentials, {Microsoft.Maui.Essentials, 9.0.51}",
+      "Microsoft.Maui.Graphics, {Microsoft.Maui.Graphics, 9.0.51}",
+      "Microsoft.Maui.Graphics.Win2D.WinUI.Desktop, {Microsoft.Maui.Graphics.Win2D.WinUI.Desktop, 9.0.51}",
+      "Microsoft.Windows.ApplicationModel.DynamicDependency.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.ApplicationModel.Resources.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.AppLifecycle.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.AppNotifications.Builder.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.AppNotifications.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.Management.Deployment.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.PushNotifications.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.Security.AccessControl.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.Storage.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.System.Power.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.System.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.Windows.Widgets.Projection, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.WindowsAppRuntime.Bootstrap.Net, {Microsoft.WindowsAppSDK, 1.6.250205002}",
+      "Microsoft.WinUI, {Microsoft.WindowsAppSDK, 1.6.250205002}"
+    ],
+    "targetFramework": "net9.0-windows10.0.19041.0",
+    "typeReuseMode": "All"
+  }
+}

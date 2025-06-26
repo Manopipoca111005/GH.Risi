@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.AdicionarTrocasPasso4"
+             Title="AdicionarTrocasPasso4"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="White">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="more_icon.png"
+                     Order="Primary"
+                     Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <Shell.TitleView>
+        <Grid Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Nova troca"
+               FontSize="18"
+               FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Grid.Column="1" />
+
+            <Image Source="pontoslogin.png"
+               WidthRequest="30"
+               HeightRequest="30"
+               Grid.Column="2"
+               VerticalOptions="Center"
+               HorizontalOptions="End">
+                
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="20">
+
+            <StackLayout HorizontalOptions="FillAndExpand" >
+                <Image Source="passo4.png"
+                       WidthRequest="411"
+                       Margin="-10,0,0,0"
+                       />
+            </StackLayout>
+
+
+            <Label Text="CONFIRMAÇÃO DA TROCA"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#29B6C5"
+                   HorizontalOptions="Center" />
+
+            <Grid ColumnDefinitions="Auto, *, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                  ColumnSpacing="10" RowSpacing="20">
+
+                <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" ColumnDefinitions="*,*">
+                    <Button Text="TROCAR" BackgroundColor="#29B6C5" TextColor="White" CornerRadius="0" FontSize="12" FontAttributes="Bold"/>
+                    <Button Grid.Column="1" Text="POR" BackgroundColor="#F04D5D" TextColor="White" CornerRadius="0" FontSize="12" FontAttributes="Bold"/>
+                </Grid>
+
+                <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.RowSpan="4"
+                                     BackgroundColor="#E0F7FA"
+                                     Padding="12,10,12,10"
+                                     Spacing="33"
+                                     VerticalOptions="FillAndExpand">
+                    <Label Text="COLABORADOR:" TextColor="#29B6C5" FontAttributes="Bold" FontSize="12" VerticalOptions="Center"/>
+                    <Label Text="DATA:" TextColor="#29B6C5" FontAttributes="Bold" FontSize="12" VerticalOptions="Center"/>
+                    <Label Text="TURNO:" TextColor="#29B6C5" FontAttributes="Bold" FontSize="12" VerticalOptions="Center"/>
+                    <Label Text="SERVIÇO:" TextColor="#29B6C5" FontAttributes="Bold" FontSize="12" VerticalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <Label Grid.Row="1" Grid.Column="1" x:Name="lblColab" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Grid.Row="2" Grid.Column="1" x:Name="DataColab1" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Border Grid.Row="3" Grid.Column="1" Stroke="LightGray" StrokeThickness="1" Padding="0" HeightRequest="40">
+                    <Picker Title="Selecione o turno" 
+                            VerticalOptions="Center" 
+                            x:Name="pickerturno">
+                    </Picker>
+                </Border>
+                <Label Grid.Row="4" Grid.Column="1" Text="Serviço 81" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                <Label Grid.Row="1" Grid.Column="2" x:Name="lblColab2" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Grid.Row="2" Grid.Column="2" x:Name="DataColab2" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Border Grid.Row="3" Grid.Column="2" Stroke="LightGray" StrokeThickness="1" Padding="0" HeightRequest="40">
+                    <Picker Title="Selecione o turno" 
+                            VerticalOptions="Center"
+                            x:Name="pickerturno2">
+                    </Picker>
+                </Border>
+                <Label Grid.Row="4" Grid.Column="2" x:Name="lblServico" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="15" Margin="0,10,0,0">
+                <Button Text="ANTERIOR" BackgroundColor="#29B6C5" TextColor="White" FontAttributes="Bold"/>
+                <Button Clicked="OnConfirmarTrocaClicked" Grid.Column="1" Text="TROCAR" BackgroundColor="#29B6C5" TextColor="White" FontAttributes="Bold"/>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

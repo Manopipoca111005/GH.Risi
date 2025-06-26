@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusionInputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             x:Class="MauiApp1.AdicionarTroca"
+             Title="AdicionarTroca"
+             Shell.NavBarIsVisible="True"
+             BackgroundColor="White">
+    <Shell.TitleView>
+        <Grid Padding="10" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Nova troca"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Grid.Column="1" />
+
+            <Image Source="pontoslogin.png"
+                   WidthRequest="30"
+                   HeightRequest="30"
+                   Grid.Column="2"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto"
+          RowSpacing="0">
+
+        <HorizontalStackLayout Grid.Row="0"
+                               BackgroundColor="White"
+                               Padding="20,20,20,10"
+                               HorizontalOptions="FillAndExpand"
+                               Spacing="10">
+            <StackLayout HorizontalOptions="FillAndExpand" >
+                <Image Source="passo1.png"
+                       WidthRequest="411"
+                       Margin="-15,0,0,0"
+                       />
+            </StackLayout>
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="2"
+              VerticalOptions="Center"
+              HorizontalOptions="FillAndExpand">
+            <VerticalStackLayout Padding="20,0,20,0"
+                                 Spacing="20"
+                                 HorizontalOptions="FillAndExpand">
+                <Label Text="INDIQUE O SERVIÇO:"
+                       TextColor="#333333"
+                       FontSize="16"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold" />
+
+                <Border StrokeShape="RoundRectangle 5"
+                        Stroke="#CCCCCC"
+                        StrokeThickness="1"
+                        BackgroundColor="White"
+                        Padding="0"
+                        HorizontalOptions="FillAndExpand">
+                    <syncfusionInputs:SfComboBox
+                        x:Name="serviceComboBox"
+                        Placeholder="Selecione o serviço"
+                        FontSize="16"
+                        TextColor="#555555"
+                        HorizontalOptions="FillAndExpand"
+                        DisplayMemberPath="ServiceName"
+                        HeightRequest="45"
+                        HorizontalTextAlignment="Center"
+                        ItemsSource="{Binding ServicosDisponiveis}">
+                        <syncfusionInputs:SfComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="5">
+                                    <Label Text="{Binding ServiceName}" FontAttributes="Bold" />
+                                    <Label Text="{Binding FormattedDate}" FontSize="Small" TextColor="Gray" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </syncfusionInputs:SfComboBox.ItemTemplate>
+                    </syncfusionInputs:SfComboBox>
+                </Border>
+
+                <Button Text="SEGUINTE"
+                        BackgroundColor="#00BCD4"
+                        TextColor="White"
+                        FontSize="16"
+                        CornerRadius="5"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="Button_Clicked_1" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
